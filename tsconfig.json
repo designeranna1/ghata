@@ -18,6 +18,6 @@
         "removeComments": true,
         "rootDir": "./src",
         "outDir": "./dist",
-        "target": "es5"
+        "target": "ES2015"
     }
 }

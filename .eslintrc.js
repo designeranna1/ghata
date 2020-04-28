@@ -5,8 +5,8 @@ module.exports = {
     },
     'extends': [
         'eslint:recommended',
+        'plugin:@typescript-eslint/eslint-recommended',
         'plugin:prettier/recommended',
-        'plugin:@typescript-eslint/eslint-recommended'
     ],
     'globals': {
         'Atomics': 'readonly',
@@ -28,10 +28,6 @@ module.exports = {
         'linebreak-style': [
             'error',
             'unix'
-        ],
-        'quotes': [
-            'error',
-            'single'
         ],
         'semi': [
             'error',

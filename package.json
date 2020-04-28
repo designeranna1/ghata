@@ -20,8 +20,13 @@
         "build": "rm -rf dist/ && tsc"
     },
     "keywords": [],
-    "dependencies": {},
+    "dependencies": {
+        "ghost-storage-base": "0.0.4",
+        "inquirer": "^7.1.0",
+        "itivrutaha": "^0.1.1"
+    },
     "devDependencies": {
+        "@types/inquirer": "^6.5.0",
         "@types/node": "^13.13.4",
         "@typescript-eslint/eslint-plugin": "^2.30.0",
         "@typescript-eslint/parser": "^2.30.0",

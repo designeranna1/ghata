@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -13,12 +12,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const prompts_1 = __importDefault(require("./prompts"));
-const install_1 = __importDefault(require("./install"));
-function main() {
+const inquirer_1 = __importDefault(require("inquirer"));
+const validation_1 = require("./validation");
+function ask() {
     return __awaiter(this, void 0, void 0, function* () {
-        const answers = yield prompts_1.default();
-        yield install_1.default(answers.path);
+        return (yield inquirer_1.default.prompt([
+            {
+                name: 'path',
+                type: 'input',
+                validate: validation_1.vPath,
+                message: 'What is the path of Ghost installation?',
+            },
+        ]));
     });
 }
-main();
+exports.default = ask;

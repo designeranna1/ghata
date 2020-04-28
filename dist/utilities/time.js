@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -9,16 +8,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const prompts_1 = __importDefault(require("./prompts"));
-const install_1 = __importDefault(require("./install"));
-function main() {
+function sleep(milliseconds) {
+    return new Promise(resolve => setTimeout(resolve, milliseconds));
+}
+exports.sleep = sleep;
+function setInterval(interval, func) {
     return __awaiter(this, void 0, void 0, function* () {
-        const answers = yield prompts_1.default();
-        yield install_1.default(answers.path);
+        while (true) {
+            yield sleep(interval);
+            yield func();
+        }
     });
 }
-main();
+exports.setInterval = setInterval;
