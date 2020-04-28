@@ -6,10 +6,11 @@ import { promises as fs } from 'fs'
 
 import { forEach } from '../utilities/loops'
 import logger from './logger'
+import { Answers } from './prompts'
 
-export default async function install(install: string): Promise<void> {
+export default async function install(answers: Answers): Promise<void> {
     // convert the path to absolute in case the user has given a relative one
-    const resolved = path.resolve(install)
+    const resolved = path.resolve(answers.path)
     const versions = path.join(resolved, 'versions')
 
     // the variable that stores the paths to compatible versions of
@@ -54,4 +55,30 @@ export default async function install(install: string): Promise<void> {
             )
         }
     })
+
+    // read the config json file
+    const config = JSON.parse(
+        (await fs.readFile(answers.config, { encoding: 'UTF-8' })) as string,
+    )
+
+    // set the storage adapter as "ghata" 😎
+    config['storage'] = {
+        active: 'ghata',
+        ghata: {
+            endpoint: answers.endpoint,
+            subdomain: answers.subdomain,
+            spacePath: answers.spacePath,
+            bucket: answers.bucketName,
+            key: answers.spaceKey,
+            secret: answers.secretKey,
+        },
+    }
+
+    // write back the config file
+    await fs.writeFile(answers.config, JSON.stringify(config, null, 4), {
+        encoding: 'UTF-8',
+    })
+
+    // tell the user we have finished installation process
+    logger.success('Finished installing ghata storage adapter for Ghost')
 }

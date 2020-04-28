@@ -34,3 +34,12 @@ function vPath(input) {
     });
 }
 exports.vPath = vPath;
+function vSpacePath(input) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const absolute = path_1.default.isAbsolute(input);
+        if (!absolute)
+            return 'The provided path is not absolute.';
+        return true;
+    });
+}
+exports.vSpacePath = vSpacePath;

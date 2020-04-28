@@ -11,7 +11,7 @@ import install from './install'
 
 async function main(): Promise<void> {
     const answers = await ask()
-    await install(answers.path)
+    await install(answers)
 }
 
 main()

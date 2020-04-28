@@ -14,8 +14,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const ghost_storage_base_1 = __importDefault(require("ghost-storage-base"));
 module.exports = class Ghata extends ghost_storage_base_1.default {
-    constructor() {
-        super();
+    constructor(options) {
+        console.log(options);
+        super(options);
     }
     save(image, targetDir) {
         return __awaiter(this, void 0, void 0, function* () {

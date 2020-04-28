@@ -18,7 +18,7 @@ const install_1 = __importDefault(require("./install"));
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         const answers = yield prompts_1.default();
-        yield install_1.default(answers.path);
+        yield install_1.default(answers);
     });
 }
 main();

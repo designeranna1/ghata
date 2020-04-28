@@ -16,9 +16,9 @@ const path_1 = __importDefault(require("path"));
 const fs_1 = require("fs");
 const loops_1 = require("../utilities/loops");
 const logger_1 = __importDefault(require("./logger"));
-function install(install) {
+function install(answers) {
     return __awaiter(this, void 0, void 0, function* () {
-        const resolved = path_1.default.resolve(install);
+        const resolved = path_1.default.resolve(answers.path);
         const versions = path_1.default.join(resolved, 'versions');
         const compatibleVersions = [];
         yield loops_1.forEach(yield fs_1.promises.readdir(versions), (version) => {
@@ -37,6 +37,22 @@ function install(install) {
                 logger_1.default.warning(`A version of ghata is already installed on ${path_1.default.basename(version)}`);
             }
         }));
+        const config = JSON.parse((yield fs_1.promises.readFile(answers.config, { encoding: 'UTF-8' })));
+        config['storage'] = {
+            active: 'ghata',
+            ghata: {
+                endpoint: answers.endpoint,
+                subdomain: answers.subdomain,
+                spacePath: answers.spacePath,
+                bucket: answers.bucketName,
+                key: answers.spaceKey,
+                secret: answers.secretKey,
+            },
+        };
+        yield fs_1.promises.writeFile(answers.config, JSON.stringify(config, null, 4), {
+            encoding: 'UTF-8',
+        });
+        logger_1.default.success('Finished installing ghata storage adapter for Ghost');
     });
 }
 exports.default = install;

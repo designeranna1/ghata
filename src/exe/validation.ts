@@ -32,3 +32,10 @@ export async function vPath(input: string): Promise<boolean | string> {
     // and the path provided by the user is totally valid
     return true
 }
+
+export async function vSpacePath(input: string): Promise<boolean | string> {
+    const absolute = path.isAbsolute(input)
+    if (!absolute) return 'The provided path is not absolute.'
+
+    return true
+}

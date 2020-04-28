@@ -5,8 +5,8 @@ module.exports = {
     },
     'extends': [
         'eslint:recommended',
-        'plugin:@typescript-eslint/eslint-recommended',
         'plugin:prettier/recommended',
+        'plugin:@typescript-eslint/recommended',
     ],
     'globals': {
         'Atomics': 'readonly',
@@ -32,6 +32,20 @@ module.exports = {
         'semi': [
             'error',
             'never'
-        ]
+        ],
+        '@typescript-eslint/member-delimiter-style': [
+            2,
+            {
+                multiline: {
+                    delimiter: 'none',
+                    requireLast: false,
+                },
+                singleline: {
+                    delimiter: 'semi',
+                    requireLast: true,
+                },
+            },
+        ],
+        '@typescript-eslint/no-explicit-any': 'off'
     }
 }

@@ -4,8 +4,9 @@
 import StorageBase from 'ghost-storage-base'
 
 module.exports = class Ghata extends StorageBase {
-    constructor() {
-        super()
+    constructor(options: any) {
+        console.log(options)
+        super(options)
     }
 
     async save(image: any, targetDir: string): Promise<string> {
