@@ -21,10 +21,12 @@
     },
     "keywords": [],
     "dependencies": {
+        "aws-sdk": "^2.664.0",
         "ghost-storage-base": "0.0.4",
         "glob": "^7.1.6",
         "inquirer": "^7.1.0",
-        "itivrutaha": "^0.1.1"
+        "itivrutaha": "^0.1.1",
+        "moment": "^2.24.0"
     },
     "devDependencies": {
         "@types/glob": "^7.1.1",

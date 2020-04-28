@@ -43,7 +43,7 @@ function ask() {
             {
                 name: 'endpoint',
                 type: 'input',
-                message: 'What is the endpoint of the Digital Ocean space?',
+                message: 'What is the endpoint of the Digital Ocean Space?',
             },
             {
                 name: 'bucketName',
@@ -54,7 +54,7 @@ function ask() {
                 name: 'spacePath',
                 type: 'input',
                 validate: validation_1.vSpacePath,
-                message: 'Where would you like to store data on the space?',
+                message: 'Where would you like to store data on the Space?',
             },
             {
                 name: 'hasSubdomain',

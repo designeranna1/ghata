@@ -55,7 +55,7 @@ export default async function ask(): Promise<Answers> {
         {
             name: 'endpoint',
             type: 'input',
-            message: 'What is the endpoint of the Digital Ocean space?',
+            message: 'What is the endpoint of the Digital Ocean Space?',
         },
         {
             name: 'bucketName',
@@ -66,7 +66,7 @@ export default async function ask(): Promise<Answers> {
             name: 'spacePath',
             type: 'input',
             validate: vSpacePath,
-            message: 'Where would you like to store data on the space?',
+            message: 'Where would you like to store data on the Space?',
         },
         {
             name: 'hasSubdomain',

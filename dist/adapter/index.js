@@ -12,15 +12,23 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const aws_sdk_1 = __importDefault(require("aws-sdk"));
 const ghost_storage_base_1 = __importDefault(require("ghost-storage-base"));
+const save_1 = __importDefault(require("./save"));
 module.exports = class Ghata extends ghost_storage_base_1.default {
     constructor(options) {
-        console.log(options);
         super(options);
+        this.options = options;
+        this.s3 = new aws_sdk_1.default.S3({
+            endpoint: options.endpoint,
+            accessKeyId: options.key,
+            secretAccessKey: options.secret,
+            sslEnabled: true,
+        });
     }
-    save(image, targetDir) {
+    save(file) {
         return __awaiter(this, void 0, void 0, function* () {
-            return 'https://static.vasanthdeveloper.com/image.png';
+            return yield save_1.default(this.s3, this.options, file);
         });
     }
     serve() {
