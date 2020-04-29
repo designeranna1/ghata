@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -13,10 +12,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const index_1 = __importDefault(require("./cmd/index"));
-function main() {
+const prompts_1 = __importDefault(require("./prompts"));
+const index_1 = __importDefault(require("./auto/index"));
+const install_1 = __importDefault(require("./install"));
+function install(options) {
     return __awaiter(this, void 0, void 0, function* () {
-        yield index_1.default();
+        const auto = options.auto;
+        let installData;
+        if (!auto) {
+            installData = yield prompts_1.default();
+        }
+        else {
+            installData = yield index_1.default();
+        }
+        yield install_1.default(installData, auto);
     });
 }
-main();
+exports.default = install;

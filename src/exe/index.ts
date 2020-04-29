@@ -6,12 +6,12 @@
 //   _____/   /_____/    |  Executable entryfile for ghata project
 //                       |
 
-import ask from './prompts'
-import install from './install'
+// import ask from './prompts'
+// import install from './install'
+import app from './cmd/index'
 
 async function main(): Promise<void> {
-    const answers = await ask()
-    await install(answers)
+    await app()
 }
 
 main()

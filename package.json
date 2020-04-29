@@ -22,16 +22,21 @@
     "keywords": [],
     "dependencies": {
         "aws-sdk": "^2.664.0",
+        "execa": "^4.0.0",
         "ghost-storage-base": "0.0.4",
         "glob": "^7.1.6",
         "inquirer": "^7.1.0",
         "itivrutaha": "^0.1.1",
-        "moment": "^2.24.0"
+        "moment": "^2.24.0",
+        "ora": "^4.0.4",
+        "sade": "^1.7.3"
     },
     "devDependencies": {
         "@types/glob": "^7.1.1",
         "@types/inquirer": "^6.5.0",
         "@types/node": "^13.13.4",
+        "@types/ora": "^3.2.0",
+        "@types/sade": "^1.6.0",
         "@typescript-eslint/eslint-plugin": "^2.30.0",
         "@typescript-eslint/parser": "^2.30.0",
         "eslint": "^6.8.0",

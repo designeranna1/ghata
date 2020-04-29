@@ -4,11 +4,29 @@
 import path from 'path'
 import { promises as fs } from 'fs'
 
-import { forEach } from '../utilities/loops'
-import logger from './logger'
+import ora from 'ora'
+import chalk from 'chalk'
+import exec from 'execa'
+
+import { forEach } from '../../../utilities/loops'
+import logger from '../../logger'
 import { Answers } from './prompts'
 
-export default async function install(answers: Answers): Promise<void> {
+export default async function install(
+    answers: Answers,
+    auto: boolean,
+): Promise<void> {
+    // create the new cli spinner
+    const spinner = ora({
+        hideCursor: true,
+        text: 'Installing 🍯 ghata',
+    })
+
+    // show the spinner only if auto is disabled
+    if (!auto) {
+        spinner.start()
+    }
+
     // convert the path to absolute in case the user has given a relative one
     const resolved = path.resolve(answers.path)
     const versions = path.join(resolved, 'versions')
@@ -48,11 +66,7 @@ export default async function install(answers: Answers): Promise<void> {
         try {
             await fs.symlink(adapterPath, installPath)
         } catch {
-            logger.warning(
-                `A version of ghata is already installed on ${path.basename(
-                    version,
-                )}`,
-            )
+            true
         }
     })
 
@@ -79,6 +93,24 @@ export default async function install(answers: Answers): Promise<void> {
         encoding: 'UTF-8',
     })
 
+    // only if auto disabled, we also restart Ghost
+    if (!auto) {
+        try {
+            await exec('ghost', ['restart'])
+        } catch {
+            true
+        }
+    }
+
     // tell the user we have finished installation process
-    logger.success('Finished installing ghata storage adapter for Ghost')
+    if (!auto) {
+        spinner.stopAndPersist({
+            text: 'Finished installing 🍯 ghata',
+            symbol: chalk.greenBright.bold('✓'),
+        })
+    } else {
+        logger.success(
+            'Finished 💿 installing 🍯 ghata storage 🔌 adapter for 👻 Ghost',
+        )
+    }
 }

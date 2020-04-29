@@ -7,7 +7,7 @@ import { sync as glob } from 'glob'
 import inquirer from 'inquirer'
 
 import { vPath, vSpacePath } from './validation'
-import { forEach } from '../utilities/loops'
+import { forEach } from '../../../../utilities/loops'
 
 export interface Answers {
     path: string

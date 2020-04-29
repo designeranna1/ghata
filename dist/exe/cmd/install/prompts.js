@@ -15,8 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const path_1 = __importDefault(require("path"));
 const glob_1 = require("glob");
 const inquirer_1 = __importDefault(require("inquirer"));
-const validation_1 = require("./cmd/install/validation");
-const loops_1 = require("../utilities/loops");
+const validation_1 = require("./validation");
+const loops_1 = require("../../../utilities/loops");
 function ask() {
     return __awaiter(this, void 0, void 0, function* () {
         const installPath = yield inquirer_1.default.prompt({
