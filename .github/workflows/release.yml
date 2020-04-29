@@ -8,8 +8,7 @@ on:
 jobs:
     release:
         runs-on: ubuntu-latest
-        steps:
-            - continue-on-error: false
+        steps:            
             - uses: actions/checkout@master
             - name: Setting Variables
               run: echo ::set-env name=RELEASE_TAG::'v'$(cat package.json | grep version | cut -d'"' -f 4) && echo ::set-env name=RELEASE_TITLE::'🔖 ghata v'$(cat package.json | grep version | cut -d'"' -f 4)
