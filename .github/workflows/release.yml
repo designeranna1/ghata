@@ -11,9 +11,13 @@ jobs:
         steps:
             - continue-on-error: false
             - uses: actions/checkout@master
+            - name: Setting Variables
+              run: echo ::set-env name=RELEASE_TAG::'v'$(cat package.json | grep version | cut -d'"' -f 4) && echo ::set-env name=RELEASE_TITLE::'🔖 ghata v'$(cat package.json | grep version | cut -d'"' -f 4)
             - name: Release on GitHub
               uses: ncipollo/release-action@v1
               with:
+                name: ${{ env.RELEASE_TITLE }}
+                tag: ${{ env.RELEASE_TAG }}
                 bodyFile: CHANGELOG.md
                 token: ${{ secrets.GITHUB_TOKEN }}
             - name: Release on NPM
