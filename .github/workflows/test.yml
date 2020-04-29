@@ -1,0 +1,23 @@
+name: Test
+
+on:
+    pull_request:
+            branches:
+                - mainline
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - continue-on-error: false
+            - uses: actions/checkout@master
+            - name: Installing Node.js
+              uses: actions/setup-node@v1
+              with:
+                node-version: '12.x'
+            - name: Installing dependencies
+              run: npm install
+            - name: Linting the code
+              run: npm run lint
+            - name: Building the code
+              run: npm run build

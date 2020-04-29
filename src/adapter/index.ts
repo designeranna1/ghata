@@ -37,13 +37,15 @@ module.exports = class Ghata extends StorageBase {
         }
     }
 
-    async exists(fileName: string, targetDir: string): Promise<boolean> {
+    async exists(): Promise<boolean> {
         return false
     }
 
-    async delete() {
+    async delete(): Promise<void> {
         return Promise.reject('not implemented')
     }
 
-    async read(options: any): Promise<void> {}
+    async read(): Promise<void> {
+        true
+    }
 }

@@ -17,6 +17,7 @@
     },
     "scripts": {
         "start": "tsc -w",
+        "lint": "eslint -c .eslintrc.js --fix 'src/**/*.ts'",
         "build": "rm -rf dist/ && tsc"
     },
     "keywords": [],

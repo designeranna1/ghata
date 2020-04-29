@@ -36,7 +36,7 @@ module.exports = class Ghata extends ghost_storage_base_1.default {
             next();
         };
     }
-    exists(fileName, targetDir) {
+    exists() {
         return __awaiter(this, void 0, void 0, function* () {
             return false;
         });
@@ -46,7 +46,9 @@ module.exports = class Ghata extends ghost_storage_base_1.default {
             return Promise.reject('not implemented');
         });
     }
-    read(options) {
-        return __awaiter(this, void 0, void 0, function* () { });
+    read() {
+        return __awaiter(this, void 0, void 0, function* () {
+            true;
+        });
     }
 };

@@ -1,0 +1,22 @@
+name: Release
+
+on:
+    push:
+        branches:
+            - mainline
+
+jobs:
+    release:
+        runs-on: ubuntu-latest
+        steps:
+            - continue-on-error: false
+            - uses: actions/checkout@master
+            - name: Release on GitHub
+              uses: ncipollo/release-action@v1
+              with:
+                bodyFile: CHANGELOG.md
+                token: ${{ secrets.GITHUB_TOKEN }}
+            - name: Release on NPM
+              uses: JS-DevTools/npm-publish@v1
+              with:
+                token: ${{ secrets.NPM_TOKEN }}
