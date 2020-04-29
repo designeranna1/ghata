@@ -8,8 +8,7 @@ on:
 jobs:
     release:
         runs-on: ubuntu-latest
-        steps:
-            - continue-on-error: false
+        steps:            
             - uses: actions/checkout@master
             - name: Release on GitHub
               uses: ncipollo/release-action@v1
