@@ -16,15 +16,14 @@ const path_1 = __importDefault(require("path"));
 const sade_1 = __importDefault(require("sade"));
 const logger_1 = __importDefault(require("../logger"));
 const index_1 = __importDefault(require("./install/index"));
-const app = sade_1.default('ghata');
+const app = sade_1.default('ghata', true);
 const packageInfo = require(path_1.default.join(__dirname, '..', '..', '..', 'package.json'));
 function parse() {
     return __awaiter(this, void 0, void 0, function* () {
         app.version(packageInfo.version);
         app.describe(packageInfo.description.substring(8));
-        app.example('install --auto');
-        app.command('install', 'Installs storage adapter on all supported versions of Ghost')
-            .option('--auto', 'Use environment variables instead of interactive prompts')
+        app.option('--auto', 'Use environment variables instead of interactive prompts')
+            .option('-e, --exec', 'Command to be executed after installing', 'node /var/lib/ghost/current/index.js')
             .action(index_1.default);
         app.parse(process.argv, {
             unknown: arg => logger_1.default.error(`Unknown argument "${arg}".`, 3),

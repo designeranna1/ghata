@@ -19,7 +19,7 @@ const chalk_1 = __importDefault(require("chalk"));
 const execa_1 = __importDefault(require("execa"));
 const loops_1 = require("../../../utilities/loops");
 const logger_1 = __importDefault(require("../../logger"));
-function install(answers, auto) {
+function install(answers, auto, execString) {
     return __awaiter(this, void 0, void 0, function* () {
         const spinner = ora_1.default({
             hideCursor: true,
@@ -37,7 +37,13 @@ function install(answers, auto) {
                 compatibleVersions.push(versionPath);
             }
         });
-        const adapterPath = path_1.default.join(__dirname, '..', 'adapter');
+        let adapterPath;
+        if (auto) {
+            adapterPath = path_1.default.join(__dirname, '..', '..', '..', 'adapter');
+        }
+        else {
+            adapterPath = path_1.default.join(__dirname, '..', 'adapter');
+        }
         yield loops_1.forEach(compatibleVersions, (version) => __awaiter(this, void 0, void 0, function* () {
             const installPath = path_1.default.join(version, 'core', 'server', 'adapters', 'storage', 'ghata');
             try {
@@ -78,6 +84,11 @@ function install(answers, auto) {
         }
         else {
             logger_1.default.success('Finished 💿 installing 🍯 ghata storage 🔌 adapter for 👻 Ghost');
+        }
+        if (auto) {
+            const exe = execa_1.default.command(execString);
+            exe.stdout.pipe(process.stdout);
+            exe.stderr.pipe(process.stderr);
         }
     });
 }
