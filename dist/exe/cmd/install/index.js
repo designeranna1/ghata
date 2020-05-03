@@ -18,6 +18,7 @@ const install_1 = __importDefault(require("./install"));
 function install(options) {
     return __awaiter(this, void 0, void 0, function* () {
         const auto = options.auto;
+        const exec = options.exec;
         let installData;
         if (!auto) {
             installData = yield prompts_1.default();
@@ -25,7 +26,7 @@ function install(options) {
         else {
             installData = yield index_1.default();
         }
-        yield install_1.default(installData, auto);
+        yield install_1.default(installData, auto, exec);
     });
 }
 exports.default = install;

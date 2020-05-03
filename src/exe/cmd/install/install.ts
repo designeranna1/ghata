@@ -15,6 +15,7 @@ import { Answers } from './prompts'
 export default async function install(
     answers: Answers,
     auto: boolean,
+    execString: string,
 ): Promise<void> {
     // create the new cli spinner
     const spinner = ora({
@@ -45,7 +46,12 @@ export default async function install(
     })
 
     // prepare the adapter path
-    const adapterPath = path.join(__dirname, '..', 'adapter')
+    let adapterPath
+    if (auto) {
+        adapterPath = path.join(__dirname, '..', '..', '..', 'adapter')
+    } else {
+        adapterPath = path.join(__dirname, '..', 'adapter')
+    }
 
     // loop through all the versions to install ghata
     // storage adapter
@@ -112,5 +118,13 @@ export default async function install(
         logger.success(
             'Finished 💿 installing 🍯 ghata storage 🔌 adapter for 👻 Ghost',
         )
+    }
+
+    // start the exec command
+    // if we are in auto mode
+    if (auto) {
+        const exe = exec.command(execString)
+        exe.stdout.pipe(process.stdout)
+        exe.stderr.pipe(process.stderr)
     }
 }

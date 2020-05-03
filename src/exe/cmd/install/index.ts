@@ -6,6 +6,7 @@ import installTask from './install'
 
 export default async function install(options: any): Promise<void> {
     const auto: boolean = options.auto
+    const exec: string = options.exec
     let installData: Answers
 
     // ask the user with prompts or take from environment
@@ -17,5 +18,5 @@ export default async function install(options: any): Promise<void> {
     }
 
     // install the ghata storage module
-    await installTask(installData, auto)
+    await installTask(installData, auto, exec)
 }

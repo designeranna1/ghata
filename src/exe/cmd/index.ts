@@ -8,7 +8,7 @@ import sade from 'sade'
 import logger from '../logger'
 import install from './install/index'
 
-const app = sade('ghata')
+const app = sade('ghata', true)
 const packageInfo = require(path.join(
     __dirname,
     '..',
@@ -21,17 +21,15 @@ export default async function parse(): Promise<void> {
     app.version(packageInfo.version)
     app.describe((packageInfo.description as string).substring(8))
 
-    // define a few examples
-    app.example('install --auto')
-
     // configure all the commands
-    app.command(
-        'install',
-        'Installs storage adapter on all supported versions of Ghost',
+    app.option(
+        '--auto',
+        'Use environment variables instead of interactive prompts',
     )
         .option(
-            '--auto',
-            'Use environment variables instead of interactive prompts',
+            '-e, --exec',
+            'Command to be executed after installing',
+            'node /var/lib/ghost/current/index.js',
         )
         .action(install)
 
