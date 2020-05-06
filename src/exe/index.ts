@@ -8,10 +8,12 @@
 
 // import ask from './prompts'
 // import install from './install'
-import app from './cmd/index'
+import app from './cli/index'
 
 async function main(): Promise<void> {
-    await app()
+    const args = await app()
+
+    console.log(args)
 }
 
 main()

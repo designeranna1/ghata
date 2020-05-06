@@ -13,21 +13,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const path_1 = __importDefault(require("path"));
-const sade_1 = __importDefault(require("sade"));
-const logger_1 = __importDefault(require("../logger"));
-const index_1 = __importDefault(require("./install/index"));
-const app = sade_1.default('ghata', true);
-const packageInfo = require(path_1.default.join(__dirname, '..', '..', '..', 'package.json'));
+const command_line_args_1 = __importDefault(require("command-line-args"));
+const options_1 = __importDefault(require("./options"));
+const help_1 = __importDefault(require("./options/help"));
+const version_1 = __importDefault(require("./options/version"));
+const appData = require(path_1.default.join(__dirname, '..', '..', '..', 'package.json'));
 function parse() {
     return __awaiter(this, void 0, void 0, function* () {
-        app.version(packageInfo.version);
-        app.describe(packageInfo.description.substring(8));
-        app.option('--auto', 'Use environment variables instead of interactive prompts')
-            .option('-e, --exec', 'Command to be executed after installing', 'node /var/lib/ghost/current/index.js')
-            .action(index_1.default);
-        app.parse(process.argv, {
-            unknown: arg => logger_1.default.error(`Unknown argument "${arg}".`, 3),
-        });
+        const parsed = command_line_args_1.default(options_1.default);
+        if (parsed['help']) {
+            yield help_1.default();
+        }
+        if (parsed['version']) {
+            yield version_1.default(appData);
+        }
+        return parsed;
     });
 }
 exports.default = parse;

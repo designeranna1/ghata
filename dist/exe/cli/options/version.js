@@ -12,21 +12,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const prompts_1 = __importDefault(require("./prompts"));
-const index_1 = __importDefault(require("./auto/index"));
-const install_1 = __importDefault(require("./install"));
-function install(options) {
+const chalk_1 = __importDefault(require("chalk"));
+const node_emoji_1 = __importDefault(require("node-emoji"));
+function version(appData) {
     return __awaiter(this, void 0, void 0, function* () {
-        const auto = options.auto;
-        const exec = options.exec;
-        let installData;
-        if (!auto) {
-            installData = yield prompts_1.default();
-        }
-        else {
-            installData = yield index_1.default();
-        }
-        yield install_1.default(installData, auto, exec);
+        console.log(node_emoji_1.default.emojify(`:honey_pot: ${chalk_1.default.bold.whiteBright('ghata')} v${appData.version}`));
+        console.log(`${chalk_1.default.bold('Project home')} https://github.com/vasanthdeveloper/ghata`);
+        console.log(`Developed, designed and maintained by ${chalk_1.default.bold.whiteBright('Vasanth Developer')}.`);
+        console.log(node_emoji_1.default.emojify(`A software released in :sparkling_heart: and open source.`));
+        process.exit(0);
     });
 }
-exports.default = install;
+exports.default = version;
