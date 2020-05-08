@@ -1,20 +1,12 @@
-# 🔖 ghata v0.0.0
+# 🔖 ghata v0.1.0
 
 ### ✨ New Features
-* Saves images from Ghost to Digital Ocean
-* Added `ghata install` command
+* Removed `ghata install` command
+* Added `ghata --force` to skip check if already installed
+* Ghost is now automatically restarted in interactive mode
 
 ### 🎨 Cosmetics
-* None
+* Shows an update notification when a new version is released
 
 ### 🐛 Bug Fixes
-* None
-
-### 🔒 Security Fixes
-* None
-
-### 🗑 Deprecations
-* None
-
-### ☠️ Removals
-* None
+* Fixed Unhandled CLI parser errors
