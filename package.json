@@ -28,12 +28,14 @@
         "glob": "^7.1.6",
         "inquirer": "^7.1.0",
         "itivrutaha": "^0.1.1",
+        "log-symbols": "^4.0.0",
         "node-emoji": "^1.10.0",
         "ora": "^4.0.4"
     },
     "devDependencies": {
         "@types/glob": "^7.1.1",
         "@types/inquirer": "^6.5.0",
+        "@types/log-symbols": "^3.0.0",
         "@types/node": "^13.13.4",
         "@types/node-emoji": "^1.8.1",
         "@types/ora": "^3.2.0",

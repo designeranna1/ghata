@@ -14,7 +14,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const ora_1 = __importDefault(require("ora"));
 const chalk_1 = __importDefault(require("chalk"));
+const log_symbols_1 = __importDefault(require("log-symbols"));
 const logger_1 = __importDefault(require("../logger"));
+const skip_1 = __importDefault(require("./skip"));
 const dependencies_1 = __importDefault(require("./dependencies"));
 const install_1 = __importDefault(require("./install"));
 const link_1 = __importDefault(require("./link"));
@@ -29,6 +31,20 @@ function startInstallation(answers, options) {
         if (!options.auto && !options.verbose) {
             spinner.start();
         }
+        const skipped = yield skip_1.default(answers.config);
+        if (skipped == true) {
+            if (!options.auto && !options.verbose) {
+                spinner.color = 'yellow';
+                spinner.stopAndPersist({
+                    text: chalk_1.default.yellowBright('Already installed'),
+                    symbol: chalk_1.default.yellowBright(log_symbols_1.default.warning),
+                });
+            }
+            else {
+                logger_1.default.warning(`An existing installation detected. Skipped.`);
+            }
+            process.exit(0);
+        }
         spinner.text = 'Adding dependencies to 👻 Ghost';
         yield dependencies_1.default(answers.installation);
         spinner.text = 'Installing 🍯 ghata to 👻 Ghost';
@@ -40,9 +56,10 @@ function startInstallation(answers, options) {
         spinner.text = `Reinstalling 👻 Ghost's dependencies`;
         yield restore_1.default(answers.installation);
         if (!options.auto && !options.verbose) {
+            spinner.color = 'green';
             spinner.stopAndPersist({
-                text: 'Finished installing 🍯 ghata',
-                symbol: chalk_1.default.greenBright.bold('✓'),
+                text: chalk_1.default.greenBright('Finished installing 🍯 ghata'),
+                symbol: chalk_1.default.greenBright(log_symbols_1.default.success),
             });
         }
         else {

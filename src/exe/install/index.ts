@@ -5,9 +5,11 @@
 
 import ora from 'ora'
 import chalk from 'chalk'
+import symbols from 'log-symbols'
 
 import { AnswersImpl, ParsedArgsImpl } from '../interfaces'
 import logger from '../logger'
+import skip from './skip'
 import dependencies from './dependencies'
 import install from './install'
 import link from './link'
@@ -27,6 +29,24 @@ export default async function startInstallation(
     // show the spinner only if auto is disabled
     if (!options.auto && !options.verbose) {
         spinner.start()
+    }
+
+    // skip installation if there is an existing installation
+    // of ghata is found, unless --force flag is used
+    const skipped = await skip(answers.config)
+    if (skipped == true) {
+        if (!options.auto && !options.verbose) {
+            spinner.color = 'yellow'
+            spinner.stopAndPersist({
+                text: chalk.yellowBright('Already installed'),
+                symbol: chalk.yellowBright(symbols.warning),
+            })
+        } else {
+            logger.warning(`An existing installation detected. Skipped.`)
+        }
+
+        // exit the process here
+        process.exit(0)
     }
 
     // add ghata's required dependencies to the latest version
@@ -58,9 +78,10 @@ export default async function startInstallation(
 
     // tell the user we have finished installation process
     if (!options.auto && !options.verbose) {
+        spinner.color = 'green'
         spinner.stopAndPersist({
-            text: 'Finished installing 🍯 ghata',
-            symbol: chalk.greenBright.bold('✓'),
+            text: chalk.greenBright('Finished installing 🍯 ghata'),
+            symbol: chalk.greenBright(symbols.success),
         })
     } else {
         logger.success(
