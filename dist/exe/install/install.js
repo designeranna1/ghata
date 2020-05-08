@@ -12,21 +12,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const prompts_1 = __importDefault(require("./prompts"));
-const index_1 = __importDefault(require("./auto/index"));
-const install_1 = __importDefault(require("./install"));
-function install(options) {
+const execa_1 = __importDefault(require("execa"));
+const logger_1 = __importDefault(require("../logger"));
+function installGhata(ghostPath) {
     return __awaiter(this, void 0, void 0, function* () {
-        const auto = options.auto;
-        const exec = options.exec;
-        let installData;
-        if (!auto) {
-            installData = yield prompts_1.default();
-        }
-        else {
-            installData = yield index_1.default();
-        }
-        yield install_1.default(installData, auto, exec);
+        logger_1.default.verbose('Installing ghata as a dependency to Ghost');
+        const version = require('../../../package.json').version;
+        yield execa_1.default('npm', ['install', `ghata@${version}`], {
+            cwd: ghostPath,
+        });
     });
 }
-exports.default = install;
+exports.default = installGhata;

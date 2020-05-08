@@ -6,7 +6,7 @@ import path from 'path'
 import AWS from 'aws-sdk'
 import moment from 'moment'
 
-import { OptionsImpl, FileInfoImpl } from '../interfaces'
+import { OptionsImpl, FileInfoImpl } from './interfaces'
 
 // This function wraps the s3.upload() into a promise
 // because for some wired reason, 🤷 the s3.upload().promise()

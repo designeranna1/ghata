@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -9,20 +8,25 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const index_1 = __importDefault(require("./cli/index"));
-const updates_1 = __importDefault(require("./updates"));
-const index_2 = __importDefault(require("./prompts/index"));
-const index_3 = __importDefault(require("./install/index"));
-function main() {
+const fs_1 = require("fs");
+function skip(configPath, force) {
     return __awaiter(this, void 0, void 0, function* () {
-        const args = yield index_1.default();
-        yield updates_1.default();
-        const answers = yield index_2.default(args);
-        yield index_3.default(answers, args);
+        if (force)
+            return false;
+        const config = JSON.parse((yield fs_1.promises.readFile(configPath, { encoding: 'UTF-8' })));
+        const storage = config['storage'];
+        if (!storage)
+            return false;
+        const active = storage['active'];
+        if (!active)
+            return false;
+        if (active != 'ghata') {
+            return false;
+        }
+        else {
+            return true;
+        }
     });
 }
-main();
+exports.default = skip;

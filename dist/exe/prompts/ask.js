@@ -13,19 +13,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const path_1 = __importDefault(require("path"));
-const glob_1 = require("glob");
 const inquirer_1 = __importDefault(require("inquirer"));
+const glob_1 = require("glob");
 const validation_1 = require("./validation");
-const loops_1 = require("../../../../utilities/loops");
+const loops_1 = require("../../utilities/loops");
+const _1 = require(".");
 function ask() {
     return __awaiter(this, void 0, void 0, function* () {
-        const installPath = yield inquirer_1.default.prompt({
+        const ghostPath = path_1.default.resolve((yield inquirer_1.default.prompt({
             name: 'value',
             type: 'input',
             validate: validation_1.vPath,
             message: 'What is the path of Ghost installation?',
-        });
-        const configGlob = path_1.default.join(path_1.default.resolve(installPath.value), '*.json');
+        })).value);
+        const configGlob = path_1.default.join(ghostPath, '*.json');
         const configFiles = [];
         yield loops_1.forEach(glob_1.sync(configGlob), (jsonFile) => {
             configFiles.push({
@@ -33,25 +34,25 @@ function ask() {
                 value: jsonFile,
             });
         });
-        const configFile = yield inquirer_1.default.prompt({
-            name: 'value',
-            type: 'list',
-            message: 'In which config file should ghata be installed?',
-            choices: configFiles,
-        });
-        const additionalAnswers = yield inquirer_1.default.prompt([
+        const data = yield inquirer_1.default.prompt([
+            {
+                name: 'config',
+                type: 'list',
+                message: 'In which config file should ghata be installed?',
+                choices: configFiles,
+            },
             {
                 name: 'endpoint',
                 type: 'input',
                 message: 'What is the endpoint of the Digital Ocean Space?',
             },
             {
-                name: 'bucketName',
+                name: 'bucket',
                 type: 'input',
                 message: 'What is the unique name of the Space?',
             },
             {
-                name: 'spacePath',
+                name: 'path',
                 type: 'input',
                 validate: validation_1.vSpacePath,
                 message: 'Where would you like to store data on the Space?',
@@ -68,29 +69,28 @@ function ask() {
                 message: 'What is the subdomain of this Space?',
             },
             {
-                name: 'apiKey',
+                name: 'key',
                 type: 'input',
                 message: 'What is the Spaces key from Digital Ocean?',
             },
             {
-                name: 'secretKey',
+                name: 'secret',
                 type: 'password',
                 message: 'What is the secret Spaces key from Digital Ocean?',
             },
         ]);
-        const returnable = {
-            path: installPath.value,
-            config: configFile.value,
-            endpoint: additionalAnswers.endpoint,
-            bucketName: additionalAnswers.bucketName,
-            spacePath: additionalAnswers.spacePath,
-            subdomain: additionalAnswers.hasSubdomain == true
-                ? additionalAnswers.subdomain
-                : `${additionalAnswers.bucketName}.${additionalAnswers.endpoint}`,
-            spaceKey: additionalAnswers.apiKey,
-            secretKey: additionalAnswers.secretKey,
+        return {
+            installation: path_1.default.join(ghostPath, 'current'),
+            config: data.config,
+            data: {
+                subdomain: _1.makeSubdomain(data.subdomain, data.endpoint, data.bucket),
+                endpoint: data.endpoint,
+                bucket: data.bucket,
+                path: data.path,
+                key: data.key,
+                secret: data.secret,
+            },
         };
-        return returnable;
     });
 }
 exports.default = ask;

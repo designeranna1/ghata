@@ -1,9 +1,11 @@
-// This file will validate the inputs provided by the user
-// during the interactive installation process
+/*
+ *  Contains functions that validate the user input for interactive prompts.
+ *  Created On 06 May 2020
+ */
 
 import path from 'path'
 import { existsSync as exists, promises as fs } from 'fs'
-import { forEach } from '../../../../utilities/loops'
+import { forEach } from '../../utilities/loops'
 
 export async function vPath(input: string): Promise<boolean | string> {
     // resolve the path, in case it is relative
