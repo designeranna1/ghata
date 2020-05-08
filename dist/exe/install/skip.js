@@ -10,8 +10,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs_1 = require("fs");
-function skip(configPath) {
+function skip(configPath, force) {
     return __awaiter(this, void 0, void 0, function* () {
+        if (force)
+            return false;
         const config = JSON.parse((yield fs_1.promises.readFile(configPath, { encoding: 'UTF-8' })));
         const storage = config['storage'];
         if (!storage)

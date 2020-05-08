@@ -6,7 +6,15 @@
 
 import { promises as fs } from 'fs'
 
-export default async function skip(configPath: string): Promise<boolean> {
+export default async function skip(
+    configPath: string,
+    force: boolean,
+): Promise<boolean> {
+    // when force is true, we don't even need to read the file
+    // and then determine if we need to continue installation
+    // just return true!
+    if (force) return false
+
     // read the config file
     const config = JSON.parse(
         (await fs.readFile(configPath, { encoding: 'UTF-8' })) as string,

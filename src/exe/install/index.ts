@@ -33,7 +33,7 @@ export default async function startInstallation(
 
     // skip installation if there is an existing installation
     // of ghata is found, unless --force flag is used
-    const skipped = await skip(answers.config)
+    const skipped = await skip(answers.config, options.force)
     if (skipped == true) {
         if (!options.auto && !options.verbose) {
             spinner.color = 'yellow'

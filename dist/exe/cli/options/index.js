@@ -7,6 +7,11 @@ const options = [
         type: Boolean,
     },
     {
+        name: 'force',
+        description: 'Continue to install even if already installed.',
+        type: Boolean,
+    },
+    {
         name: 'verbose',
         alias: 'v',
         description: 'Show additional information.',

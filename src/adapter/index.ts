@@ -4,7 +4,7 @@
 import AWS from 'aws-sdk'
 import StorageBase from 'ghost-storage-base'
 
-import { OptionsImpl, FileInfoImpl } from '../interfaces'
+import { OptionsImpl, FileInfoImpl } from './interfaces'
 import saveFile from './save'
 
 module.exports = class Ghata extends StorageBase {

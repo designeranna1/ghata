@@ -24,4 +24,5 @@ export interface AnswersImpl {
 export interface ParsedArgsImpl {
     auto: boolean
     verbose: boolean
+    force: boolean
 }

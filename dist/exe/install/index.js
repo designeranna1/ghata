@@ -31,7 +31,7 @@ function startInstallation(answers, options) {
         if (!options.auto && !options.verbose) {
             spinner.start();
         }
-        const skipped = yield skip_1.default(answers.config);
+        const skipped = yield skip_1.default(answers.config, options.force);
         if (skipped == true) {
             if (!options.auto && !options.verbose) {
                 spinner.color = 'yellow';
