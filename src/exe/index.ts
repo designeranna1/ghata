@@ -6,14 +6,20 @@
 //   _____/   /_____/    |  Executable entryfile for ghata project
 //                       |
 
-// import ask from './prompts'
-// import install from './install'
 import app from './cli/index'
+import getAnswers from './prompts/index'
+import install from './install/index'
 
 async function main(): Promise<void> {
+    // parse the command line arguments
     const args = await app()
 
-    console.log(args)
+    // get all the required information from either asking
+    // the user, or by picking up from environment variables
+    const answers = await getAnswers(args)
+
+    // start the installation process
+    await install(answers, args)
 }
 
 main()

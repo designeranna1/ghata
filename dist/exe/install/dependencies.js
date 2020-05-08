@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -13,14 +12,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const index_1 = __importDefault(require("./cli/index"));
-const index_2 = __importDefault(require("./prompts/index"));
-const index_3 = __importDefault(require("./install/index"));
-function main() {
+const execa_1 = __importDefault(require("execa"));
+const logger_1 = __importDefault(require("../logger"));
+const dependencies_1 = __importDefault(require("../../adapter/dependencies"));
+function addDependencies(ghostPath) {
     return __awaiter(this, void 0, void 0, function* () {
-        const args = yield index_1.default();
-        const answers = yield index_2.default(args);
-        yield index_3.default(answers, args);
+        logger_1.default.verbose('Installing dependencies required for ghata');
+        const deps = require('../../../package.json').devDependencies;
+        const depsToInstall = [];
+        dependencies_1.default.forEach((dep) => {
+            const version = deps[dep].replace(/[^0-9a-zA-Z.]/g, '');
+            depsToInstall.push(`${dep}@${version}`);
+        });
+        yield execa_1.default('npm', ['install', depsToInstall.join(' ')], {
+            cwd: ghostPath,
+        });
+        logger_1.default.verbose('Done installing dependencies for ghata');
     });
 }
-main();
+exports.default = addDependencies;

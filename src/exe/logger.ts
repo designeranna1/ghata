@@ -5,4 +5,5 @@ import itivrutaha from 'itivrutaha'
 
 export default itivrutaha.createNewLogger({
     theme: ':type :message',
+    verboseIdentifier: ['-v', '--verbose'],
 })

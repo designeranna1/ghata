@@ -7,6 +7,12 @@ const options = [
         type: Boolean,
     },
     {
+        name: 'verbose',
+        alias: 'v',
+        description: 'Show additional information.',
+        type: Boolean,
+    },
+    {
         name: 'version',
         alias: 'V',
         description: 'Show version information and terminate.',

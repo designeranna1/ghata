@@ -8,11 +8,11 @@ import commandLineArgs from 'command-line-args'
 import options from './options'
 import help from './options/help'
 import version from './options/version'
-import logger from '../logger'
+import { ParsedArgsImpl } from '../interfaces'
 
 const appData = require(path.join(__dirname, '..', '..', '..', 'package.json'))
 
-export default async function parse(): Promise<any> {
+export default async function parse(): Promise<ParsedArgsImpl> {
     const parsed = commandLineArgs(options)
 
     // handle the help flag
@@ -26,5 +26,5 @@ export default async function parse(): Promise<any> {
     }
 
     // return the parsed options
-    return parsed
+    return parsed as ParsedArgsImpl
 }

@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -13,14 +12,28 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const index_1 = __importDefault(require("./cli/index"));
-const index_2 = __importDefault(require("./prompts/index"));
-const index_3 = __importDefault(require("./install/index"));
-function main() {
+const ask_1 = __importDefault(require("./ask"));
+function load(options) {
     return __awaiter(this, void 0, void 0, function* () {
-        const args = yield index_1.default();
-        const answers = yield index_2.default(args);
-        yield index_3.default(answers, args);
+        if (options.auto) {
+            return {
+                data: null,
+                installation: null,
+                config: null,
+            };
+        }
+        else {
+            return yield ask_1.default();
+        }
     });
 }
-main();
+exports.default = load;
+function makeSubdomain(subdomain, endpoint, bucket) {
+    if (subdomain) {
+        return subdomain;
+    }
+    else {
+        return bucket + '.' + endpoint;
+    }
+}
+exports.makeSubdomain = makeSubdomain;
