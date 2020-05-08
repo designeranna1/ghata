@@ -14,13 +14,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const execa_1 = __importDefault(require("execa"));
 const logger_1 = __importDefault(require("../logger"));
-function installGhata(ghostPath) {
+function restart(auto, skip) {
     return __awaiter(this, void 0, void 0, function* () {
-        logger_1.default.verbose('Installing ghata as a dependency to Ghost');
-        const version = require('../../../package.json').version;
-        yield execa_1.default('npm', ['install', `ghata@${version}`], {
-            cwd: ghostPath,
-        });
+        logger_1.default.verbose('Restarting Ghost');
+        if (!auto && !skip) {
+            yield execa_1.default('ghost', ['restart']);
+        }
     });
 }
-exports.default = installGhata;
+exports.default = restart;

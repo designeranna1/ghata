@@ -15,5 +15,4 @@ export default async function restoreDependencies(
     await exec('npm', ['install'], {
         cwd: ghostPath,
     })
-    logger.verbose(`Finished reinstalling Ghost's dependencies`)
 }

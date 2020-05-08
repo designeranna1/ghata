@@ -15,6 +15,7 @@ import install from './install'
 import link from './link'
 import configure from './configure'
 import restore from './restore'
+import restart from './restart'
 
 export default async function startInstallation(
     answers: AnswersImpl,
@@ -75,6 +76,11 @@ export default async function startInstallation(
     // 🤷 we will run "npm i" once again, to restore them
     spinner.text = `Reinstalling 👻 Ghost's dependencies`
     await restore(answers.installation)
+
+    // restart Ghost using the CLI unless we are in auto mode
+    // or restarting is skipped by the user
+    spinner.text = `Restarting 👻 Ghost`
+    await restart(options.auto, options['skip-restart'])
 
     // tell the user we have finished installation process
     if (!options.auto && !options.verbose) {

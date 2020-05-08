@@ -20,7 +20,6 @@ function restoreDependencies(ghostPath) {
         yield execa_1.default('npm', ['install'], {
             cwd: ghostPath,
         });
-        logger_1.default.verbose(`Finished reinstalling Ghost's dependencies`);
     });
 }
 exports.default = restoreDependencies;

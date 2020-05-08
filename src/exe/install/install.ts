@@ -16,6 +16,4 @@ export default async function installGhata(ghostPath: string): Promise<void> {
     await exec('npm', ['install', `ghata@${version}`], {
         cwd: ghostPath,
     })
-
-    logger.verbose('Done installing ghata as a dependency to Ghost')
 }

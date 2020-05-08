@@ -27,7 +27,6 @@ function addDependencies(ghostPath) {
         yield execa_1.default('npm', ['install', depsToInstall.join(' ')], {
             cwd: ghostPath,
         });
-        logger_1.default.verbose('Done installing dependencies for ghata');
     });
 }
 exports.default = addDependencies;

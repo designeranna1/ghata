@@ -22,6 +22,7 @@ const install_1 = __importDefault(require("./install"));
 const link_1 = __importDefault(require("./link"));
 const configure_1 = __importDefault(require("./configure"));
 const restore_1 = __importDefault(require("./restore"));
+const restart_1 = __importDefault(require("./restart"));
 function startInstallation(answers, options) {
     return __awaiter(this, void 0, void 0, function* () {
         const spinner = ora_1.default({
@@ -55,6 +56,8 @@ function startInstallation(answers, options) {
         yield configure_1.default(answers.installation, answers.config, answers.data);
         spinner.text = `Reinstalling 👻 Ghost's dependencies`;
         yield restore_1.default(answers.installation);
+        spinner.text = `Restarting 👻 Ghost`;
+        yield restart_1.default(options.auto, options['skip-restart']);
         if (!options.auto && !options.verbose) {
             spinner.color = 'green';
             spinner.stopAndPersist({

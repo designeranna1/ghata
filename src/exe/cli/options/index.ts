@@ -12,6 +12,12 @@ const options = [
         type: Boolean,
     },
     {
+        name: 'skip-restart',
+        alias: 'r',
+        description: 'Do not restart Ghost. Ignored in auto mode.',
+        type: Boolean,
+    },
+    {
         name: 'verbose',
         alias: 'v',
         description: 'Show additional information.',

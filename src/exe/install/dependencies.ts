@@ -25,6 +25,4 @@ export default async function addDependencies(
     await exec('npm', ['install', depsToInstall.join(' ')], {
         cwd: ghostPath,
     })
-
-    logger.verbose('Done installing dependencies for ghata')
 }

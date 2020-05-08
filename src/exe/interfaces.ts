@@ -25,4 +25,5 @@ export interface ParsedArgsImpl {
     auto: boolean
     verbose: boolean
     force: boolean
+    'skip-restart': boolean
 }
