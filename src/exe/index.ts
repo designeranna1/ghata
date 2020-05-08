@@ -7,12 +7,16 @@
 //                       |
 
 import app from './cli/index'
+import updates from './updates'
 import getAnswers from './prompts/index'
 import install from './install/index'
 
 async function main(): Promise<void> {
     // parse the command line arguments
     const args = await app()
+
+    // check for updates
+    await updates()
 
     // get all the required information from either asking
     // the user, or by picking up from environment variables
