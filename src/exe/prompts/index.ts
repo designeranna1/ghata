@@ -6,16 +6,16 @@
 
 import { AnswersImpl, ParsedArgsImpl } from '../interfaces'
 import ask from './ask'
+import auto from '../auto/index'
 
 export default async function load(
     options: ParsedArgsImpl,
 ): Promise<AnswersImpl> {
     if (options.auto) {
-        return {
-            data: null,
-            installation: null,
-            config: null,
-        }
+        // get the required values from
+        // environment variables
+        // and error out if they aren't defined
+        return await auto()
     } else {
         // interactively, ask the user
         // the required data to install and configure

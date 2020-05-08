@@ -13,14 +13,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const ask_1 = __importDefault(require("./ask"));
+const index_1 = __importDefault(require("../auto/index"));
 function load(options) {
     return __awaiter(this, void 0, void 0, function* () {
         if (options.auto) {
-            return {
-                data: null,
-                installation: null,
-                config: null,
-            };
+            return yield index_1.default();
         }
         else {
             return yield ask_1.default();
