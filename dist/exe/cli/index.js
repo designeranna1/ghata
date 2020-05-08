@@ -17,10 +17,25 @@ const command_line_args_1 = __importDefault(require("command-line-args"));
 const options_1 = __importDefault(require("./options"));
 const help_1 = __importDefault(require("./options/help"));
 const version_1 = __importDefault(require("./options/version"));
+const logger_1 = __importDefault(require("../logger"));
 const appData = require(path_1.default.join(__dirname, '..', '..', '..', 'package.json'));
 function parse() {
     return __awaiter(this, void 0, void 0, function* () {
-        const parsed = command_line_args_1.default(options_1.default);
+        let parsed;
+        try {
+            parsed = command_line_args_1.default(options_1.default);
+        }
+        catch (e) {
+            if (e.name == 'UNKNOWN_VALUE') {
+                logger_1.default.error(`Unrecognized value "${e.value}" was passed.`, 3);
+            }
+            else if (e.name == 'UNKNOWN_OPTION') {
+                logger_1.default.error(`Unrecognized option "${e.optionName}" was passed.`, 3);
+            }
+            else {
+                logger_1.default.error(e, 3);
+            }
+        }
         if (parsed['help']) {
             yield help_1.default();
         }
