@@ -31,7 +31,7 @@ export default async function initializeGhost(
 
         // copy the content.org/ into content/
         await exec.command(
-            `cp -r "${path.join(contentOrigPath, '*')}" "${contentPath}"`,
+            `cp -r ${path.join(contentOrigPath, '*')} "${contentPath}"`,
         )
     }
 }

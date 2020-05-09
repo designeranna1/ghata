@@ -25,7 +25,7 @@ function initializeGhost(ghostPath, auto) {
         const files = yield (yield fs_1.promises.readdir(contentPath)).length;
         if (files < 1) {
             logger_1.default.verbose(`Initializing Ghost's content directory`);
-            yield execa_1.default.command(`cp -r "${path_1.default.join(contentOrigPath, '*')}" "${contentPath}"`);
+            yield execa_1.default.command(`cp -r ${path_1.default.join(contentOrigPath, '*')} "${contentPath}"`);
         }
     });
 }
