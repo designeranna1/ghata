@@ -1,8 +1,8 @@
 ### ✨ New Features
-* When content directory is empty in Docker container, we now auto populate it
+* None
 
 ### 🎨 Cosmetics
 * None
 
 ### 🐛 Bug Fixes
-* Fixed invalid Ghost directory error doesn't terminate the process
+* Fixed cannot remove /var/lib/ghost/content 'Resource is busy'

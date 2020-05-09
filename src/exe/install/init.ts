@@ -7,8 +7,7 @@
 import path from 'path'
 import { promises as fs } from 'fs'
 
-import del from 'del'
-import copy from 'copy-dir'
+import exec from 'execa'
 
 import logger from '../logger'
 
@@ -30,14 +29,9 @@ export default async function initializeGhost(
     if (files < 1) {
         logger.verbose(`Initializing Ghost's content directory`)
 
-        // delete the content/ directory
-        await del(contentPath)
-
         // copy the content.org/ into content/
-        await copy(contentOrigPath, contentPath, {
-            utimes: true,
-            mode: true,
-            cover: true,
-        })
+        await exec.command(
+            `cp -r "${path.join(contentOrigPath, '*')}" "${contentPath}"`,
+        )
     }
 }
