@@ -74,8 +74,8 @@ export default async function startInstallation(
 
     // because installing our packages into Ghost seems to break dependencies
     // 🤷 we will run "npm i" once again, to restore them
-    spinner.text = `Reinstalling 👻 Ghost's dependencies`
-    await restore(answers.installation)
+    // spinner.text = `Reinstalling 👻 Ghost's dependencies`
+    // await restore(answers.installation)
 
     // restart Ghost using the CLI unless we are in auto mode
     // or restarting is skipped by the user

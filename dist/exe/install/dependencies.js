@@ -24,7 +24,7 @@ function addDependencies(ghostPath) {
             const version = deps[dep].replace(/[^0-9a-zA-Z.]/g, '');
             depsToInstall.push(`${dep}@${version}`);
         });
-        yield execa_1.default('npm', ['install', depsToInstall.join(' ')], {
+        yield execa_1.default('yarn', ['add', depsToInstall.join(' ')], {
             cwd: ghostPath,
         });
     });

@@ -16,8 +16,8 @@ const execa_1 = __importDefault(require("execa"));
 const logger_1 = __importDefault(require("../logger"));
 function restart(auto, skip) {
     return __awaiter(this, void 0, void 0, function* () {
-        logger_1.default.verbose('Restarting Ghost');
         if (!auto && !skip) {
+            logger_1.default.verbose('Restarting Ghost');
             yield execa_1.default('ghost', ['restart']);
         }
     });

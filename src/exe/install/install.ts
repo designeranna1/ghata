@@ -13,7 +13,7 @@ export default async function installGhata(ghostPath: string): Promise<void> {
     logger.verbose('Installing ghata as a dependency to Ghost')
     const version = require('../../../package.json').version
 
-    await exec('npm', ['install', `ghata@${version}`], {
+    await exec('yarn', ['add', `ghata@${version}`], {
         cwd: ghostPath,
     })
 }
