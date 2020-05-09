@@ -1,7 +1,7 @@
 {
     "name": "ghata",
     "description": "( घट ) - A 🌊 Digital Ocean 🍯 storage 🔌 adapter for 👻 Ghost.",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "license": "ISC",
     "bin": "dist/exe/index.js",
     "homepage": "https://github.com/vasanthdeveloper/ghata#readme",
@@ -18,7 +18,8 @@
     "scripts": {
         "start": "tsc -w",
         "lint": "eslint -c .eslintrc.js --fix 'src/**/*.ts'",
-        "build": "rm -rf dist/ && tsc"
+        "build": "rm -rf dist/ && tsc",
+        "setup": "yarn link && chmod +x $(yarn global bin)/ghata"
     },
     "keywords": [],
     "dependencies": {
