@@ -10,13 +10,13 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@master
-            - name: Installing Node.js
+            - name: Installing Yarn
               uses: actions/setup-node@v1
               with:
                 node-version: '12.x'
             - name: Installing dependencies
-              run: npm install
+              run: yarn
             - name: Linting the code
-              run: npm run lint
+              run: yarn lint
             - name: Building the code
-              run: npm run build
+              run: yarn build

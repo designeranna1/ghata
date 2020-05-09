@@ -22,7 +22,7 @@ export default async function addDependencies(
         depsToInstall.push(`${dep}@${version}`)
     })
 
-    await exec('npm', ['install', depsToInstall.join(' ')], {
+    await exec('yarn', ['add', depsToInstall.join(' ')], {
         cwd: ghostPath,
     })
 }

@@ -17,7 +17,7 @@ const logger_1 = __importDefault(require("../logger"));
 function restoreDependencies(ghostPath) {
     return __awaiter(this, void 0, void 0, function* () {
         logger_1.default.verbose(`Reinstalling Ghost's dependencies`);
-        yield execa_1.default('npm', ['install'], {
+        yield execa_1.default('yarn', [], {
             cwd: ghostPath,
         });
     });

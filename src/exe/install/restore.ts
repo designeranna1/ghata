@@ -12,7 +12,7 @@ export default async function restoreDependencies(
     ghostPath: string,
 ): Promise<void> {
     logger.verbose(`Reinstalling Ghost's dependencies`)
-    await exec('npm', ['install'], {
+    await exec('yarn', [], {
         cwd: ghostPath,
     })
 }

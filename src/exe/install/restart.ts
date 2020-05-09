@@ -11,9 +11,8 @@ export default async function restart(
     auto: boolean,
     skip: boolean,
 ): Promise<void> {
-    logger.verbose('Restarting Ghost')
-
     if (!auto && !skip) {
+        logger.verbose('Restarting Ghost')
         await exec('ghost', ['restart'])
     }
 }

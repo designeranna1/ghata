@@ -18,7 +18,7 @@ function installGhata(ghostPath) {
     return __awaiter(this, void 0, void 0, function* () {
         logger_1.default.verbose('Installing ghata as a dependency to Ghost');
         const version = require('../../../package.json').version;
-        yield execa_1.default('npm', ['install', `ghata@${version}`], {
+        yield execa_1.default('yarn', ['add', `ghata@${version}`], {
             cwd: ghostPath,
         });
     });
