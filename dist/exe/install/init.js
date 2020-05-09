@@ -14,8 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const path_1 = __importDefault(require("path"));
 const fs_1 = require("fs");
-const del_1 = __importDefault(require("del"));
-const copy_dir_1 = __importDefault(require("copy-dir"));
+const execa_1 = __importDefault(require("execa"));
 const logger_1 = __importDefault(require("../logger"));
 function initializeGhost(ghostPath, auto) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -26,12 +25,7 @@ function initializeGhost(ghostPath, auto) {
         const files = yield (yield fs_1.promises.readdir(contentPath)).length;
         if (files < 1) {
             logger_1.default.verbose(`Initializing Ghost's content directory`);
-            yield del_1.default(contentPath);
-            yield copy_dir_1.default(contentOrigPath, contentPath, {
-                utimes: true,
-                mode: true,
-                cover: true,
-            });
+            yield execa_1.default.command(`cp -r "${path_1.default.join(contentOrigPath, '*')}" "${contentPath}"`);
         }
     });
 }
