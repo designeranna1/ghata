@@ -55,6 +55,7 @@ export default async function auto(): Promise<AnswersImpl> {
     if (valid != true)
         logger.error(
             `This isn't a Ghost installation directory. Please run this command in the directory where you have installed Ghost.`,
+            5,
         )
 
     // now that we know all the variables are ready for us to return
