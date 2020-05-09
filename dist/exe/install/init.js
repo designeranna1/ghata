@@ -12,14 +12,27 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const execa_1 = __importDefault(require("execa"));
+const path_1 = __importDefault(require("path"));
+const fs_1 = require("fs");
+const del_1 = __importDefault(require("del"));
+const copy_dir_1 = __importDefault(require("copy-dir"));
 const logger_1 = __importDefault(require("../logger"));
-function restoreDependencies(ghostPath) {
+function initializeGhost(ghostPath, auto) {
     return __awaiter(this, void 0, void 0, function* () {
-        logger_1.default.verbose(`Reinstalling Ghost's dependencies`);
-        yield execa_1.default('yarn', [], {
-            cwd: ghostPath,
-        });
+        if (!auto)
+            return;
+        const contentPath = path_1.default.join(ghostPath, '..', 'content');
+        const contentOrigPath = path_1.default.join(ghostPath, '..', 'content.orig');
+        const files = yield (yield fs_1.promises.readdir(contentPath)).length;
+        if (files < 1) {
+            logger_1.default.verbose(`Initializing Ghost's content directory`);
+            yield del_1.default(contentPath);
+            yield copy_dir_1.default(contentOrigPath, contentPath, {
+                utimes: true,
+                mode: true,
+                cover: true,
+            });
+        }
     });
 }
-exports.default = restoreDependencies;
+exports.default = initializeGhost;

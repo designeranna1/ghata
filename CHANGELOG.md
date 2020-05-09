@@ -1,12 +1,8 @@
-# 🔖 ghata v0.1.0
-
 ### ✨ New Features
-* Removed `ghata install` command
-* Added `ghata --force` to skip check if already installed
-* Ghost is now automatically restarted in interactive mode
+* When content directory is empty in Docker container, we now auto populate it
 
 ### 🎨 Cosmetics
-* Shows an update notification when a new version is released
+* None
 
 ### 🐛 Bug Fixes
-* Fixed Unhandled CLI parser errors
+* Fixed invalid Ghost directory error doesn't terminate the process

@@ -14,7 +14,7 @@ import dependencies from './dependencies'
 import install from './install'
 import link from './link'
 import configure from './configure'
-import restore from './restore'
+import init from './init'
 import restart from './restart'
 
 export default async function startInstallation(
@@ -72,10 +72,10 @@ export default async function startInstallation(
     spinner.text = 'Configuring 👻 Ghost to use 🍯 ghata'
     await configure(answers.installation, answers.config, answers.data)
 
-    // because installing our packages into Ghost seems to break dependencies
-    // 🤷 we will run "npm i" once again, to restore them
-    // spinner.text = `Reinstalling 👻 Ghost's dependencies`
-    // await restore(answers.installation)
+    // in case of docker containers started for the first time,
+    // populate the content directory of Ghost with content.orig
+    spinner.text = 'Initializing 👻 Ghost'
+    await init(answers.installation, options.auto)
 
     // restart Ghost using the CLI unless we are in auto mode
     // or restarting is skipped by the user

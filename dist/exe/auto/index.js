@@ -44,7 +44,7 @@ function auto() {
             logger_1.default.error(`Required environment variable "${exists}" not set.`, 4);
         const valid = yield validation_1.vPath(process.cwd());
         if (valid != true)
-            logger_1.default.error(`This isn't a Ghost installation directory. Please run this command in the directory where you have installed Ghost.`);
+            logger_1.default.error(`This isn't a Ghost installation directory. Please run this command in the directory where you have installed Ghost.`, 5);
         return {
             installation: path_1.default.join(process.cwd(), 'current'),
             config: process.env.GHATA_CONFIG,
