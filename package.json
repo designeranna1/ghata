@@ -26,6 +26,7 @@
         "command-line-args": "^5.1.1",
         "command-line-usage": "^6.1.0",
         "execa": "^4.0.0",
+        "fs-extra": "^9.0.0",
         "glob": "^7.1.6",
         "inquirer": "^7.1.0",
         "itivrutaha": "^0.1.1",
@@ -35,6 +36,7 @@
         "update-notifier": "^4.1.0"
     },
     "devDependencies": {
+        "@types/fs-extra": "^8.1.0",
         "@types/glob": "^7.1.1",
         "@types/inquirer": "^6.5.0",
         "@types/node": "^13.13.4",

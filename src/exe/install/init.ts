@@ -5,9 +5,7 @@
  */
 
 import path from 'path'
-import { promises as fs } from 'fs'
-
-import exec from 'execa'
+import fs from 'fs-extra'
 
 import logger from '../logger'
 
@@ -29,9 +27,7 @@ export default async function initializeGhost(
     if (files < 1) {
         logger.verbose(`Initializing Ghost's content directory`)
 
-        // copy the content.org/ into content/
-        await exec.command(
-            `cp -r ${path.join(contentOrigPath, '*')} "${contentPath}"`,
-        )
+        // get all the contents of content.org
+        await fs.copy(contentOrigPath, contentPath)
     }
 }

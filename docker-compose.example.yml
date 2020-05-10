@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+    ghost:
+        image: ghost:alpine
+        container_name: ghost
+        entrypoint: /var/lib/ghata/scripts/entrypoint.sh
+        command: sh -c 'sh -c "ghata --auto --verbose" && node current/index.js'
+        ports:
+            - 2368:2368
+        volumes:
+            - ./:/var/lib/ghata
+        environment:
+            GHATA_CONFIG: config.production.json
+            GHATA_ENDPOINT: nyc3.digitaloceanspaces.com
+            GHATA_BUCKET: static.vasanthdeveloper.com
+            GHATA_SUBDOMAIN: static.vasanthdeveloper.com
+            GHATA_PATH: ghost
+            GHATA_KEY: some_key
+            GHATA_SECRET: some_secret
