@@ -43,7 +43,7 @@ By having these assets in a Digital Ocean Space and not having your server to se
 
 <a href="https://www.npmjs.com/package/ghata" target="_blank" rel="noopener"><img src="https://nodei.co/npm/ghata.png?downloads=true&downloadRank=true&stars=true"></a>
 
-For _typical_ Ghost installations with Ghost-CLI here are the [installation instructions](docs/install/typical.md).
+For _typical_ Ghost installations with Ghost-CLI here are the [installation instructions](docs/install/typical.md).<br>
 For 👻 Ghost installations with 🐬 Docker and `docker-compose` [click here](docs/install/docker.md).
 
 ## 🛠 Options
@@ -76,7 +76,7 @@ A software released in 💖 and open source.
 
 I work 24x7 on projects like this, and make [educational computer videos](https://youtube.com/vasanthdeveloper/videos). Although I don't do this for making money. Money is required, for me to live and eat as well as to buy equipments and continue to maintain projects like this. 
 
-It would be awesome if you show your gratitude 😇 by supporting my projects.
+It would be awesome if you show your gratitude 😇 by supporting my projects.<br/>
 Please become my 👇 **patron** and support my work 🙏🏽.
 
 <a href="https://www.patreon.com/vasanthdeveloper" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Patreon-support-f96854?style=for-the-badge&logo=patreon&logoColor=ffffff"></a>
