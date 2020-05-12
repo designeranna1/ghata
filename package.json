@@ -1,7 +1,7 @@
 {
     "name": "ghata",
     "description": "( घट ) - A 🌊 Digital Ocean 🍯 storage 🔌 adapter for 👻 Ghost.",
-    "version": "0.2.4",
+    "version": "1.0.0",
     "license": "ISC",
     "bin": "dist/exe/index.js",
     "preferGlobal": true,
