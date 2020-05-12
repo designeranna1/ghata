@@ -1,3 +1,5 @@
+🥳 First MVP release!
+
 ### ✨ New Features
 * None
 
@@ -5,4 +7,4 @@
 * None
 
 ### 🐛 Bug Fixes
-* Fixed cannot remove /var/lib/ghost/content 'Resource is busy'
+* None

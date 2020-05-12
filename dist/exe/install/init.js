@@ -13,8 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const path_1 = __importDefault(require("path"));
-const fs_1 = require("fs");
-const execa_1 = __importDefault(require("execa"));
+const fs_extra_1 = __importDefault(require("fs-extra"));
 const logger_1 = __importDefault(require("../logger"));
 function initializeGhost(ghostPath, auto) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -22,10 +21,10 @@ function initializeGhost(ghostPath, auto) {
             return;
         const contentPath = path_1.default.join(ghostPath, '..', 'content');
         const contentOrigPath = path_1.default.join(ghostPath, '..', 'content.orig');
-        const files = yield (yield fs_1.promises.readdir(contentPath)).length;
+        const files = yield (yield fs_extra_1.default.readdir(contentPath)).length;
         if (files < 1) {
             logger_1.default.verbose(`Initializing Ghost's content directory`);
-            yield execa_1.default.command(`cp -r ${path_1.default.join(contentOrigPath, '*')} "${contentPath}"`);
+            yield fs_extra_1.default.copy(contentOrigPath, contentPath);
         }
     });
 }
