@@ -4,6 +4,7 @@
     "version": "0.2.4",
     "license": "ISC",
     "bin": "dist/exe/index.js",
+    "preferGlobal": true,
     "homepage": "https://github.com/vasanthdeveloper/ghata#readme",
     "bugs": "https://github.com/vasanthdeveloper/ghata/issues",
     "author": {
