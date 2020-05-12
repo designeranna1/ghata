@@ -28,7 +28,8 @@
     </strong>
 </p>
 
-🍯 **ghata** is a storage 🔌 adapter that takes your uploaded images, videos, or any assets and uploads them to a 🌊 Digital Ocean Space. By having these assets in a Digital Ocean Space and not having your server serve these static assets, majority of the load can be transferred to the CDN offered by Digital Ocean Spaces which makes your Ghost blog load faster.
+🍯 **ghata** is a storage 🔌 adapter that takes your uploaded images, videos, or any assets and uploads them to a 🌊 Digital Ocean Space.
+By having these assets in a Digital Ocean Space and not having your server to serve these static assets, majority of the load can be transferred to the CDN offered by Digital Ocean Spaces which makes your Ghost blog load faster.
 
 > Tweet me [@vasanthdevelop](https://twitter.com/vasanthdevelop) and share your opinion and experience with this project 😍
 
@@ -42,7 +43,8 @@
 
 <a href="https://www.npmjs.com/package/ghata" target="_blank" rel="noopener"><img src="https://nodei.co/npm/ghata.png?downloads=true&downloadRank=true&stars=true"></a>
 
-For _typical_ Ghost installations with Ghost-CLI here are the [installation instructions](docs/install/typical.md). For 👻 Ghost installations with 🐬 Docker and `docker-compose` [click here](docs/install/docker.md) for installation instructions.
+For _typical_ Ghost installations with Ghost-CLI here are the [installation instructions](docs/install/typical.md).
+For 👻 Ghost installations with 🐬 Docker and `docker-compose` [click here](docs/install/docker.md).
 
 ## 🛠 Options
 
@@ -72,9 +74,10 @@ A software released in 💖 and open source.
 
 #### Funding
 
-I work 24x7 on projects like this, and make [educational computer videos](https://youtube.com/vasanthdeveloper/videos). Although I don't do this for making money. Money is required, for me to live and eat as well as buy equipment and continue to maintain projects like this. If you have a heart 💖 and value my efforts.
+I work 24x7 on projects like this, and make [educational computer videos](https://youtube.com/vasanthdeveloper/videos). Although I don't do this for making money. Money is required, for me to live and eat as well as to buy equipments and continue to maintain projects like this. 
 
-Please become my 👇 **patron** over at Patreon.
+It would be awesome if you show your gratitude 😇 by supporting my projects.
+Please become my 👇 **patron** and support my work 🙏🏽.
 
 <a href="https://www.patreon.com/vasanthdeveloper" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Patreon-support-f96854?style=for-the-badge&logo=patreon&logoColor=ffffff"></a>
 
