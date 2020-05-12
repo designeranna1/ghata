@@ -1,4 +1,4 @@
-<h1 align="center"><pre>🍯 ghata</pre></h1>
+<p align="center"><a href="#"><img src="https://static.vasanthdeveloper.com/ghata/logo.png" height="50"></a></p>
 <p align="center"><strong>( घट ) - A 🌊 Digital Ocean 🍯 storage 🔌 adapter for 👻 Ghost.</strong></p>
 <p align="center">
     <a href="https://www.npmjs.com/package/ghata" target="_blank" rel="noopener">
@@ -21,9 +21,9 @@
     <strong>
         <a href="#-features">Features</a> |
         <a href="#-installation">Installation</a> |
-        <a href="#-installation">Options</a> |
+        <a href="#-options">Options</a> |
         <a href="#-support">Support</a> |
-        <a href="#-contribution">Contribution</a> |
+        <a href="#-contribution--issues">Contribution</a> |
         <a href="#-license">License</a>
     </strong>
 </p>
